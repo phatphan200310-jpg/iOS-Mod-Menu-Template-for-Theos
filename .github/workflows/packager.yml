@@ -1,4 +1,4 @@
-name: Build và Đóng gói
+name: Build
 on:
   workflow_dispatch:
   push:
@@ -11,10 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install Theos
-        run: |
-          sudo apt-get install fakeroot
-          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/sdks/master/install.sh)"
+      - name: Setup Theos
+        uses: pypush/install-theos@v1
       - name: Build Package
-        run: |
-          make package FINALPACKAGE=1
+        run: make package FINALPACKAGE=1
