@@ -11,7 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
       - name: Setup Theos
-        uses: pypush/install-theos@v1
+        run: |
+          sudo apt-get install fakeroot
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/sdks/master/install.sh)"
+          
       - name: Build Package
-        run: make package FINALPACKAGE=1
+        run: |
+          export THEOS=~/theos
+          make package FINALPACKAGE=1
