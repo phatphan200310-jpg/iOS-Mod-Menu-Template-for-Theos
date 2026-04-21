@@ -1,10 +1,13 @@
 name: Auto NIC packager
 
 # On every push
+name: Build và Đóng gói
 on:
+  workflow_dispatch:
   push:
-    branches: [ master ]
-    paths:
+    branches:
+      - master
+
       - "template/*"
 
 jobs:
