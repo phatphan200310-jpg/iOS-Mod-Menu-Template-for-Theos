@@ -7,7 +7,8 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = ModMenuI13
 
-ModMenuI13_FILES = Tweak.x
+# Quan trọng: Liệt kê cả Tweak.xm và Menu.mm để máy chủ tổng hợp cả hai
+ModMenuI13_FILES = Tweak.xm Menu.mm
 ModMenuI13_FRAMEWORKS = UIKit QuartzCore
 
 include $(THEOS_MAKE_PATH)/tweak.mk
