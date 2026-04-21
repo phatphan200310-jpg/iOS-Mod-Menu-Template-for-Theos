@@ -1,6 +1,10 @@
 name: Build
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
 
 jobs:
   build:
@@ -13,12 +17,10 @@ jobs:
       - name: Setup Theos
         run: |
           sudo apt-get install fakeroot
-          export THEOS=~/theos
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/sdks/master/install.sh)"
-          # Tạo liên kết để Makefile không bị báo lỗi thiếu file
-          ln -s /opt/theos ~/theos || true 
-
+          
       - name: Build Package
         run: |
-          export THEOS=/opt/theos
+          export THEOS=~/theos
+          export THEOS_DEVICE_IP=127.0.0.1
           make package FINALPACKAGE=1
